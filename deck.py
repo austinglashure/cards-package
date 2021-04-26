@@ -9,6 +9,9 @@ class Deck:
             for bar in SUITS:
                 self.card = [foo, bar]
                 self.deck.append(self.card)
+        if len(self.deck) != 52:
+            print("Error! Incorrect card count in the deck!")
+
 
     def shuffle_deck(self):
         random.shuffle(self.deck)
@@ -18,9 +21,3 @@ class Deck:
     
     def retrieve_card(self, card):
         self.deck.append(card)
-    
-    def get_card_value(self):
-        return self.card[0]
-    
-    def get_card_suit(self):
-        return self.card[1]
