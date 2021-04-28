@@ -35,7 +35,8 @@ class Evaluator:
                     self.sorted_cards_pool[j] = self.sorted_cards_pool[j + 1]
                     self.sorted_cards_pool[j + 1] = foo
     
-    def check_flush(self):
+    def check_flush(self):  # 1 / 520 for five card stud
+        self.sort_cards()
         for suit in SUITS:
             self.flush = []
             for card in self.sorted_cards_pool:
@@ -48,7 +49,19 @@ class Evaluator:
         if len(self.flush) < 5:
             self.flush = None
             return False
-        
+    
+    def check_straight(self):
+        self.sort_cards()
+        self.span_string = "AKQJT98765432A"
+        self.poss_straight = ""
+        for i in self.sorted_cards_pool:
+            self.poss_straight += get_value(i)
+        if self.poss_straight in self.span_string:
+            self.straight = copy.deepcopy(self.sorted_cards_pool)
+            return True
+        else:
+            self.straight = None
+            return False
                 
     
     
