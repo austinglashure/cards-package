@@ -63,5 +63,18 @@ class Evaluator:
             self.straight = None
             return False
                 
+    def check_straight_flush(self):
+        if self.check_straight():
+            if self.check_flush():
+                self.straight_flush = copy.deepcopy(self.sorted_cards_pool)
+                print(self.straight_flush)
+                return True
+            else:
+                self.straight_flush = None
+                return False
+        else:
+            self.straight_flush = None
+            return False
     
+
     
