@@ -67,7 +67,6 @@ class Evaluator:
         if self.check_straight():
             if self.check_flush():
                 self.straight_flush = copy.deepcopy(self.sorted_cards_pool)
-                print(self.straight_flush)
                 return True
             else:
                 self.straight_flush = None
@@ -76,5 +75,17 @@ class Evaluator:
             self.straight_flush = None
             return False
     
+    def check_royal_flush(self):
+        temp = get_value(self.sorted_cards_pool[0])
+        if self.check_straight_flush():
+            if temp in "A":
+                self.royal_flush = copy.deepcopy(self.sorted_cards_pool)
+                print("Got one!\n", self.royal_flush)
+                return True
+            else:
+                return False
+        else:
+            self.royal_flush = None
+            return False
 
     
