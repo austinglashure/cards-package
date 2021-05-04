@@ -109,3 +109,15 @@ class Evaluator:
                     return True
             if len(self.three_kind) != 3:
                 return False
+
+    def check_two_of_kind(self):
+        if not self.check_four_of_kind() and not self.check_three_of_kind():
+            for face in deck.FACES:
+                self.two_kind = []
+                for card in self.sorted_cards_pool:
+                    if get_value(card) == face:
+                        self.two_kind.append(card)
+                if len(self.two_kind) == 2: 
+                    return True
+            if len(self.two_kind) != 2:
+                return False            
