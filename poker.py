@@ -121,3 +121,21 @@ class Evaluator:
                     return True
             if len(self.two_kind) != 2:
                 return False            
+
+    def check_full_house(self):
+        if self.check_three_of_kind():
+            omitted = get_value(self.three_kind[0])
+            for face in deck.FACES:
+                if face == omitted:
+                    pass
+                else:
+                    kind_two = []
+                    for card in self.sorted_cards_pool:
+                        if get_value(card) == face:
+                            kind_two.append(card)
+                    if len(kind_two) == 2:
+                        self.full_house = [self.three_kind, kind_two]
+                        return True
+        else:
+            self.full_house = None
+            return False
