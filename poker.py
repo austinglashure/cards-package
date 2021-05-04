@@ -80,7 +80,6 @@ class Evaluator:
         if self.check_straight_flush():
             if temp in "A":
                 self.royal_flush = copy.deepcopy(self.sorted_cards_pool)
-                print("Got one!\n", self.royal_flush)
                 return True
             else:
                 return False
@@ -88,4 +87,13 @@ class Evaluator:
             self.royal_flush = None
             return False
 
-    
+    def check_four_of_kind(self):
+        for face in deck.FACES:
+            self.four_kind = []
+            for card in self.sorted_cards_pool:
+                if get_value(card) == face:
+                    self.four_kind.append(card)
+            if len(self.four_kind) == 4: 
+                return True
+        if len(self.four_kind) != 4:
+            return False
