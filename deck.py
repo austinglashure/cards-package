@@ -2,6 +2,7 @@ import random
 SUITS = "SDCH"
 FACES = "23456789TJQKA"
 
+
 class Deck:
     def __init__(self):
         self.deck = []
