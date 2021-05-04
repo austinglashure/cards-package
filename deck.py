@@ -12,7 +12,6 @@ class Deck:
         if len(self.deck) != 52:
             print("Error! Incorrect card count in the deck!")
 
-
     def shuffle_deck(self):
         random.shuffle(self.deck)
     
