@@ -112,7 +112,7 @@ class Evaluator:
 
     def check_two_of_kind(self):
         if not self.check_four_of_kind() and not self.check_three_of_kind():
-            for face in deck.FACES:
+            for face in reversed(deck.FACES):
                 self.two_kind = []
                 for card in self.sorted_cards_pool:
                     if get_value(card) == face:
@@ -139,3 +139,22 @@ class Evaluator:
         else:
             self.full_house = None
             return False
+
+    def check_two_pair(self):
+        if not self.check_full_house():
+            if self.check_two_of_kind():
+                omitted = get_value(self.two_kind[0])
+                for face in deck.FACES:
+                    if face == omitted:
+                        pass
+                    else:
+                        pair = []
+                        for card in self.sorted_cards_pool:
+                            if get_value(card) == face:
+                                pair.append(card)
+                        if len(pair) == 2:
+                            self.two_pair = [self.two_kind, pair]
+                            return True
+        else:
+            return False
+
